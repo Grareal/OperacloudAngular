@@ -1,0 +1,43 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import './vidanta-design.css';
+
+/* Paleta Grupo Vidanta (los valores viven en vidanta-design.css). */
+:root {
+  --vidanta-blue: #005B7F;
+  --vidanta-deep: #003E55;
+  --vidanta-champagne: #B89B67;
+  --vidanta-gold-dark: #92784D;
+  --vidanta-ivory: #F7F5F0;
+  --vidanta-sand: #E8DFD0;
+  --vidanta-coffee: #3D352D;
+  --vidanta-warmgray: #6F6A63;
+  --vidanta-natural: #536653;
+}
+
+html, body { height: 100%; }
+body { margin: 0; background: var(--canvas); color: var(--ink); }
+
+.page { display: flex; min-height: 100vh; }
+.sidebar { width: 264px; flex: 0 0 auto; background: linear-gradient(180deg, var(--brand-dark), var(--brand)); color: #fff; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.sidebar .brand { display: flex; align-items: center; gap: .7rem; padding: 1.1rem 1.2rem; color: #fff; text-decoration: none; }
+.sidebar .brand-symbol { width: 40px; height: 40px; display: grid; place-items: center; background: var(--accent); border-radius: 12px; font-weight: 850; color: #fff; }
+.nav-section-label { padding: 1rem 1.2rem .35rem; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.65); }
+.sidebar .nav-link { color: rgba(255,255,255,.85); border-radius: .6rem; margin: .1rem .7rem; padding: .55rem .8rem; display: flex; gap: .6rem; align-items: center; }
+.sidebar .nav-link:hover { background: rgba(255,255,255,.12); color: #fff; }
+.sidebar .nav-link.active { background: var(--accent); color: #fff; }
+.user-card { display: flex; align-items: center; gap: .6rem; margin: 1rem .7rem; padding: .6rem .7rem; background: rgba(255,255,255,.1); border-radius: .7rem; }
+.user-card .avatar { width: 34px; height: 34px; display: grid; place-items: center; background: var(--accent); border-radius: 50%; font-weight: 800; }
+main { flex: 1; min-width: 0; }
+.content { padding: 1.5rem clamp(1rem, 3vw, 2.5rem); max-width: 1400px; }
+.uat-strip { background: repeating-linear-gradient(135deg, #8a5a00, #8a5a00 18px, #a66d00 18px, #a66d00 36px); color: #fff; text-align: center; padding: .5rem 1rem; font-weight: 700; font-size: .85rem; }
+.id-frame { position: relative; aspect-ratio: 1.586; background: #111; border-radius: 8px; overflow: hidden; }
+.id-frame img { width: 100%; height: 100%; object-fit: contain; }
+.id-frame .corner { position: absolute; width: 26px; height: 26px; border: 3px solid var(--accent); }
+.id-frame .tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+.id-frame .tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
+.id-frame .bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
+.id-frame .br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+.signature-box { overflow: hidden; padding: .5rem; background: #fff; border: 2px dashed #C9BFA9; border-radius: .9rem; }
+.signature-box canvas { display: block; width: 100%; height: 220px; touch-action: none; background: linear-gradient(to bottom, transparent 78%, #DDD3BE 79%, transparent 80%); }
+.btn-primary { background: var(--brand); border-color: var(--brand); }
+.btn-primary:hover, .btn-primary:focus { background: var(--brand-dark); border-color: var(--brand-dark); }

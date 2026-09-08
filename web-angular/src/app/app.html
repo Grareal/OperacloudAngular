@@ -1,0 +1,39 @@
+@if (isUat) { <div class="uat-strip">AMBIENTE UAT — no es producción</div> }
+<div class="page">
+  @if (showNav) {
+  <div class="sidebar">
+    <a class="brand" routerLink="/"><span class="brand-symbol">V</span><span><strong>Firma Vidanta</strong><br><small>OPERA Cloud</small></span></a>
+    <div class="nav-section-label">Operación</div>
+    <nav class="nav flex-column">
+      @if (has('operation')) { <a class="nav-link" routerLink="/operacion" routerLinkActive="active">⌕ Registro y firma</a> }
+      @if (has('registration-card')) { <a class="nav-link" routerLink="/busqueda" routerLinkActive="active">⌕ Búsqueda</a> }
+      @if (has('registration-card')) { <a class="nav-link" routerLink="/captura-identidad" routerLinkActive="active">🪪 Captura identidad</a> }
+      @if (has('signature-lookup')) { <a class="nav-link" routerLink="/consulta-firmas" routerLinkActive="active">✍ Consulta de firmas</a> }
+    </nav>
+    <div class="nav-section-label mt-3">Administración</div>
+    <nav class="nav flex-column">
+      @if (has('documents')) { <a class="nav-link" routerLink="/documentos-reserva" routerLinkActive="active">▤ Expediente documental</a> }
+      @if (has('history')) { <a class="nav-link" routerLink="/historial" routerLinkActive="active">≡ Historial</a> }
+      @if (has('audit')) { <a class="nav-link" routerLink="/auditoria" routerLinkActive="active">Auditoría</a> }
+      @if (has('pdf-templates')) { <a class="nav-link" routerLink="/plantillas-pdf" routerLinkActive="active">▤ Plantillas PDF</a> }
+      @if (has('communications')) { <a class="nav-link" routerLink="/documentos-correo" routerLinkActive="active">✉ Documentos por correo</a> }
+      @if (has('email-settings')) { <a class="nav-link" routerLink="/configuracion-correo" routerLinkActive="active">@@ Correo SMTP</a> }
+      @if (has('promotions')) {
+        <a class="nav-link" routerLink="/promociones" routerLinkActive="active">★ Promociones</a>
+        <a class="nav-link" routerLink="/codigos-promocion" routerLinkActive="active">Códigos de promoción</a>
+      }
+      @if (has('accompanying-guests')) { <a class="nav-link" routerLink="/acompanantes-opera" routerLinkActive="active">+ Acompañantes OPERA</a> }
+      @if (has('user-administration')) {
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active">⚙ Panel administrador</a>
+        <a class="nav-link" routerLink="/usuarios" routerLinkActive="active">👥 Usuarios y grupos</a>
+      }
+    </nav>
+    <div class="user-card"><span class="avatar">{{ initial }}</span><span><strong>{{ auth.displayName }}</strong><br><small>{{ auth.role }}</small></span><button type="button" class="btn btn-sm btn-outline-light ms-auto" (click)="logout()">↗</button></div>
+  </div>
+  }
+  <main>
+    <article class="content px-4">
+      <router-outlet />
+    </article>
+  </main>
+</div>

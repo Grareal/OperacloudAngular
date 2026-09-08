@@ -1,0 +1,26 @@
+services:
+  firma-opera-cloud:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: UAT
+      ConnectionStrings__FirmaOperaCloud: ${ConnectionStrings__FirmaOperaCloud}
+      OperaCloud__GatewayUrl: ${OperaCloud__GatewayUrl}
+      OperaCloud__TokenPath: ${OperaCloud__TokenPath:-/oauth/v1/tokens}
+      OperaCloud__AppKey: ${OperaCloud__AppKey}
+      OperaCloud__ClientId: ${OperaCloud__ClientId}
+      OperaCloud__ClientSecret: ${OperaCloud__ClientSecret}
+      OperaCloud__EnterpriseId: ${OperaCloud__EnterpriseId}
+      OperaCloud__Scope: ${OperaCloud__Scope}
+      OperaCloud__DefaultHotelId: ${OperaCloud__DefaultHotelId:-VINV}
+      DATA_PROTECTION_KEYS_PATH: /keys
+    volumes:
+      - data-protection-keys:/keys
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+
+volumes:
+  data-protection-keys:

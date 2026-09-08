@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src/FirmaOperaCloud.Api/FirmaOperaCloud.Api.csproj" />
+  <Project Path="src/FirmaOperaCloud.Application/FirmaOperaCloud.Application.csproj" />
+  <Project Path="src/FirmaOperaCloud.Domain/FirmaOperaCloud.Domain.csproj" />
+  <Project Path="src/FirmaOperaCloud.Infrastructure/FirmaOperaCloud.Infrastructure.csproj" />
+  <Project Path="src/FirmaOperaCloud.Shared/FirmaOperaCloud.Shared.csproj" />
+  <Project Path="tests/FirmaOperaCloud.Tests/FirmaOperaCloud.Tests.csproj" />
+</Solution>

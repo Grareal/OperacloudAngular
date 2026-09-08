@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web-angular/package-lock.json
+      - run: dotnet restore FirmaOperaCloud.slnx
+      - run: dotnet build FirmaOperaCloud.slnx -c Release --no-restore
+      - run: dotnet test FirmaOperaCloud.slnx -c Release --no-build
+      - run: npm ci
+        working-directory: web-angular
+      - run: npm run build
+        working-directory: web-angular
+      - run: dotnet publish src/FirmaOperaCloud.Api/FirmaOperaCloud.Api.csproj -c Release -o publish -p:SkipAngularBuild=true --no-build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firma-opera-cloud
+          path: publish
+          if-no-files-found: error

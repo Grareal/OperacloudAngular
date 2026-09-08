@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FirmaOperaCloud.Application\FirmaOperaCloud.Application.csproj" />
+    <ProjectReference Include="..\FirmaOperaCloud.Domain\FirmaOperaCloud.Domain.csproj" />
+    <ProjectReference Include="..\FirmaOperaCloud.Infrastructure\FirmaOperaCloud.Infrastructure.csproj" />
+    <ProjectReference Include="..\FirmaOperaCloud.Shared\FirmaOperaCloud.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="tessdata\*.traineddata" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="BuildAngularForPublish" BeforeTargets="ComputeFilesToPublish" Condition="'$(SkipAngularBuild)' != 'true'">
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)\..\..\web-angular" Command="npm ci" />
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)\..\..\web-angular" Command="npm run build" />
+    <ItemGroup>
+      <AngularDist Include="$(MSBuildProjectDirectory)\..\..\web-angular\dist\web-angular\browser\**\*" />
+      <ResolvedFileToPublish Include="@(AngularDist->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>
